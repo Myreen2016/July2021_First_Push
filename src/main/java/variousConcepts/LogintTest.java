@@ -1,16 +1,23 @@
 package variousConcepts;
 
+import java.util.concurrent.TimeUnit;
+
+import org.junit.rules.Timeout;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+
 public class LogintTest {
     
 	
 	static WebDriver driver; 
 	
 	public static void main(String[] args) throws InterruptedException{
-		launchBrowser();
+		launchbrowser();
 		loginTest();
 		tearDown();
 		
-		launchBrowser();
+		launchbrowser();
 		negloginTest();
 		tearDown();
 	}
@@ -22,12 +29,12 @@ public class LogintTest {
 
 		driver = new ChromeDriver();
 		driver.get("https://techfios.com/billing/?ng=admin/");
-		driver.manage().timeouts().implicitlyWait(60, Timeout.SECONDS);
+		 driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		driver.manage().window().maximize();
 		driver.manage().deleteAllCookies();
 	}
 
-	public void loginTest() throws InterruptedException {
+	public static void loginTest() throws InterruptedException {
 		System.out.println("Login Test");
 		driver.findElement(By.id("username")).sendKeys("demo@techfios.com");
 		driver.findElement(By.id("password")).sendKeys("abc123");
@@ -36,7 +43,7 @@ public class LogintTest {
 	}
 
 	
-	public void negloginTest() throws InterruptedException {
+	public static void negloginTest() throws InterruptedException {
 		System.out.println("neg Login Test");
 		driver.findElement(By.id("username")).sendKeys("demo@techfios.com");
 		driver.findElement(By.id("password")).sendKeys("abc123");
@@ -46,7 +53,7 @@ public class LogintTest {
 	}
 
 	
-	public void tearDown() {
+	public static void tearDown() {
 		System.out.println("Tear Down");
 
 		driver.close();
